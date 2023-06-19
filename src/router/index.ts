@@ -22,13 +22,11 @@ Vue.component('InputSwitch', InputSwitch);
 Vue.component('Dialog', Dialog);
 // import wlasnych elementow strony
 import SensorData from '@/components/SensorData.vue';
-import FiltersData from '@/components/FiltersData.vue';
 import DevicesData from '@/components/DevicesData.vue';
 import LightsData from '@/components/LightsData.vue';
 import MainPage from '@/components/MainPage.vue';
 import LoginPage from '@/components/LoginPage.vue';
 Vue.component('SensorData', SensorData);
-Vue.component('FiltersData', FiltersData);
 Vue.component('DevicesData', DevicesData);
 Vue.component('LightsData', LightsData);
 Vue.component('MainPage', MainPage);

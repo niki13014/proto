@@ -19,7 +19,7 @@
       </Column>
       <Column header="Status">
         <template #body="slotProps">
-          <!-- jeslourzdzenie jest wloczone to ustaw klase stylow kolorujaca na zielono -->
+          <!-- jesli urzdzenie jest wlaczone to ustaw klase stylow kolorujaca na zielono -->
           <span :class="slotProps.data.IsOn ? 'ON' : 'OFF'">
             <!-- wyswietl status-->
             {{ getStatus(slotProps.data.Id, slotProps.data.IsOn) }}

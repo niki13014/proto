@@ -1,3 +1,4 @@
+<!--umieszczenie komponentów -->
 <template>
   <div class="main-page">
     <div class="login-menu">
