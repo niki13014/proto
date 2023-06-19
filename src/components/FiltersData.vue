@@ -4,6 +4,7 @@
       <Column field="Id" header="Odświeżacz powietrza"></Column>
       <Column header="Status">
         <template #body="slotProps">
+          <!-- analogicznie do DevicesData -->
           <span :class="slotProps.data.IsOn ? 'ON' : 'OFF'">
             {{ slotProps.data.IsOn ? 'ON' : 'OFF' }}
           </span>

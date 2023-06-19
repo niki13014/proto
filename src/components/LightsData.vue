@@ -2,12 +2,16 @@
   <div class="sensor-data">
     <div class="lights">
       <div class="light" v-for="device in devices" :key="device.Id"> 
+        <!-- ikonka zarowki -->
         <span class="material-symbols-outlined">lightbulb</span>
+        <!-- nazwa -->
         <span> {{device.Name}} </span>
+        <!-- przelacznik czy wlaczona czy nie -->
         <InputSwitch v-model="device.IsOn" />
       </div>
     </div>
   <Button label="Dodaj żarówkę" icon="pi pi-plus" @click="onAddClick()"/>
+  <!-- dialog z formularzem do dodania zarowki -->
   <Dialog :visible.sync="display">
     <template #header>
       <h3>Dodaj żarówkę</h3>
@@ -35,6 +39,7 @@ interface DevicesModel {
 
 @Component
 export default class LightsData extends Vue {
+  // domyslne zarowki
   devices: DevicesModel[] = [
     {
       Id: 'AIR011',
@@ -58,41 +63,26 @@ export default class LightsData extends Vue {
     }
   ];
   display = false;
-  newId = '';
   newName = '';
   onDialogCancelClick() {
     this.display = false;
   }
   onDialogAddClick() {
+    // jesli nowa nazwa zarowki jest '' to jej nie dodawaj
     if(this.newName.trim() == '') return;
     this.devices.push({
-      Id: this.newId,
+      Id: this.newName,
       Name: this.newName,
       IsOn: false
     });
-    this.newId = '';
     this.newName = '';
     this.display = false;
   }
+
+  // po kliknieciu ustaw wartosc ktora pokaze dialog do dodania zarowki
   onAddClick() {
     this.display = true;
   }
-  getStatus(id: string, status: boolean) {
-    if(id.startsWith("WIN")) {
-      return status ? 'Otwarte' : 'Zamknięte'
-    }
-    else {
-      return status ? 'ON' : 'OFF'
-    }
-  }
-
-  onTurnOffOnClick(data: DevicesModel) {
-      data.IsOn = !data.IsOn;
-  }
-  onDeleteOnClick(data: DevicesModel) {
-      this.devices = this.devices.filter(x => data.Id != x.Id);
-  }
-
 }
 </script>
 <style>

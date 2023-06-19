@@ -4,9 +4,12 @@
       <Column field="Name" header="Nazwa urządzenia">
           <template #body="slotProps">
             <div class="device-name">
+              <!--jesli urzadzenia zaczyna sie od WIN wyswietl ikonke okna-->
               <span v-if="slotProps.data.Id.startsWith('WIN')" class="material-symbols-outlined">
               window
               </span>
+              <!--jesli urzadzenia zaczyna sie od air wyswietl ikonke powietrza-->
+
               <span v-if="slotProps.data.Id.startsWith('AIR')" class="material-symbols-outlined">
               air
               </span>
@@ -16,7 +19,9 @@
       </Column>
       <Column header="Status">
         <template #body="slotProps">
+          <!-- jeslourzdzenie jest wloczone to ustaw klase stylow kolorujaca na zielono -->
           <span :class="slotProps.data.IsOn ? 'ON' : 'OFF'">
+            <!-- wyswietl status-->
             {{ getStatus(slotProps.data.Id, slotProps.data.IsOn) }}
           </span>
         </template>
@@ -27,16 +32,19 @@
         </template>
       </Column>
   </DataTable>
+  <!--przycisk do dodawania urzadzen-->
   <Button label="Dodaj urządzenie" icon="pi pi-plus" @click="onAddClick()"/>
   <Dialog :visible.sync="display">
     <template #header>
       <h3>Dodaj urządzenie</h3>
     </template>
       <div>
+        <!--pole do wpisania id urzadzenia-->
         <span>Id urządzenia</span>
         <InputText v-model="newId"/>
       </div>
       <div>
+        <!--pole do wpisania nazwy urzadzenia-->
         <span>Nazwa urządzenia</span>
         <InputText v-model="newName"/>
       </div>
@@ -59,6 +67,7 @@ interface DevicesModel {
 
 @Component
 export default class DevicesData extends Vue {
+  // startowe urzadzenia
   devices: DevicesModel[] = [
     {
       Id: 'AIR011',
@@ -84,12 +93,17 @@ export default class DevicesData extends Vue {
   display = false;
   newId = '';
   newName = '';
+  //jesli uzytkownik kliknie przycisk wowczas ustawia sie wartosc ktora chowa okienko dialogowe
   onDialogCancelClick() {
     this.display = false;
   }
+  
   onDialogAddClick() {
+    //jesli nowe id jest '' to nie dodawaj
     if(this.newId.trim() == '') return;
+    // jesli nowa nazwa jest '' to nie dodawaj
     if(this.newName.trim() == '') return;
+
     this.devices.push({
       Id: this.newId,
       Name: this.newName,
@@ -98,25 +112,28 @@ export default class DevicesData extends Vue {
     this.newId = '';
     this.newName = '';
     this.display = false;
-  }
+  } 
+  
+  //jesli uzytkownik kliknie przycisk wowczas ustawia sie wartosc ktora pokazuje okienko dialogowe
   onAddClick() {
     this.display = true;
   }
   getStatus(id: string, status: boolean) {
+    // jesli urzedzenie jest oknem pokazuj wartosc otwrate lub zamkniete
     if(id.startsWith("WIN")) {
       return status ? 'Otwarte' : 'Zamknięte'
     }
     else {
+      //jesli nie jest oknem to pokazuj czy jest on cyz off
       return status ? 'ON' : 'OFF'
     }
   }
 
   onTurnOffOnClick(data: DevicesModel) {
+    //na kliniecie przycisku wlaczenia urzadzenia zmien jego stan
       data.IsOn = !data.IsOn;
   }
-  onDeleteOnClick(data: DevicesModel) {
-      this.devices = this.devices.filter(x => data.Id != x.Id);
-  }
+
 
 }
 </script>

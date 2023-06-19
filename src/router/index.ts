@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-
+// import z biblioteki do ladnych kontrolek wedlugn internetu
 import PrimeVue from 'primevue/config';
 import 'primevue/resources/themes/saga-blue/theme.css';       //theme
 import 'primevue/resources/primevue.min.css';                 //core css
@@ -20,7 +20,7 @@ Vue.component('Button', Button);
 Vue.component('InputText', InputText);
 Vue.component('InputSwitch', InputSwitch);
 Vue.component('Dialog', Dialog);
-
+// import wlasnych elementow strony
 import SensorData from '@/components/SensorData.vue';
 import FiltersData from '@/components/FiltersData.vue';
 import DevicesData from '@/components/DevicesData.vue';
@@ -33,12 +33,14 @@ Vue.component('DevicesData', DevicesData);
 Vue.component('LightsData', LightsData);
 Vue.component('MainPage', MainPage);
 Vue.component('LoginPage', LoginPage);
+
+// import czesc odpowiedzialnej za wykresy
 import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueApexCharts)
 
 Vue.component('apexchart', VueApexCharts)
 Vue.use(VueRouter)
-
+// przekierowania miedzy stronami w linku
 const routes: Array<RouteConfig> = [
   {
     path: '/',

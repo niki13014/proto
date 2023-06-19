@@ -2,19 +2,23 @@
   <div class="main-page">
     <div class="login-menu">
       <div class="logo">
+        <!-- logo -->
         <img class="logo-image" src="../assets/smog_smart.png" />
       </div>
       <div class="form">
           <div class="field">
+            <!-- pole logowania -->
               <label for="username2">Username</label>
               <InputText id="username2" type="username" v-model="userName"/>
           </div>
           <div class="field">
+            <!-- pole hasla -->
               <label for="pword">Password</label>
               <InputText id="pword" type="password" v-model="password"/>
           </div>
           <div class="field" v-show="error">
             <div class="error">
+              <!-- informacja o bledzie logowania -->
               Wrong username or password.
             </div>
           </div>
@@ -35,6 +39,7 @@ export default class LoginPage extends Vue {
   password = "";
   error = false;
 
+  // jak uzytkownik kliknie login wowczas sprawdzi sie czy dane sa dobre jesli tak to przekieruje strone
   onLoginClick() {
     if(this.userName == 'demo' && this.password == 'qwerty') {
       this.error = false;

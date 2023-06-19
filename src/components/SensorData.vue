@@ -1,5 +1,6 @@
 <template>
   <div class="sensor-data">
+    <!-- wyswietlenie danych z czujnikow -->
     <DataTable :value="sensorsData" responsiveLayout="scroll">
       <Column field="Name" header="Czujnik"></Column>
       <Column field="CoLevel" header="Poziom czadu CO"></Column>
@@ -15,6 +16,8 @@ import { SensorModel } from './MainPage.vue';
 
 @Component
 export default class SensorData extends Vue {
+
+  // przekazana z komponentu nadrzednego dane czujnikow
   @Prop({ default: [] })
   sensorsData!: SensorModel[];
 }
