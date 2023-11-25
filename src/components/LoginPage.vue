@@ -4,7 +4,7 @@
     <div class="login-menu">
       <div class="logo">
         <!-- logo -->
-        <img class="logo-image" src="../assets/smog_smart.png" />
+        <img class="logo-image" src="../assets/smog_master.jpg" />
       </div>
       <div class="form">
           <div class="field">
